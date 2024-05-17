@@ -1,4 +1,4 @@
-const apiUrl = 'arn:aws:apigateway:us-east-1::/apis/gwe1aa1xtl/routes/fwact5e';
+const apiUrl = 'https://j0s5pf7acf.execute-api.us-east-1.amazonaws.com/myproduction';
 
 async function fetchTasks() {
     const response = await fetch(apiUrl);
