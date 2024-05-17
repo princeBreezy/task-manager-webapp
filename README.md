@@ -2,6 +2,13 @@
 
 This repository contains a simple task manager web application using JavaScript for the frontend and AWS Lambda for the backend.
 
+## Features
+
+- Create new tasks
+- View existing tasks
+- Update task names
+- Delete tasks
+
 ## How to Use
 
 1. Clone the repository:
@@ -19,6 +26,8 @@ This repository contains a simple task manager web application using JavaScript 
 
 4. Open your browser and go to `http://localhost:8000`.
 
-5. Use the input field to add new tasks. Verify that tasks are displayed and stored in DynamoDB.
+5. Use the input field to add new tasks. Use the "Edit" and "Delete" buttons to manage tasks.
 
+## License
 
+This project was designed by Brandon Chimombe
