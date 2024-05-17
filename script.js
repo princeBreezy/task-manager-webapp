@@ -1,5 +1,4 @@
-// script.js
-const apiUrl = 'YOUR_API_GATEWAY_URL_HERE';
+const apiUrl = 'arn:aws:apigateway:us-east-1::/apis/gwe1aa1xtl/routes/fwact5e';
 
 async function fetchTasks() {
     const response = await fetch(apiUrl);
@@ -9,6 +8,14 @@ async function fetchTasks() {
     tasks.forEach(task => {
         const li = document.createElement('li');
         li.textContent = task.name;
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.onclick = () => deleteTask(task.id);
+        const editButton = document.createElement('button');
+        editButton.textContent = 'Edit';
+        editButton.onclick = () => editTask(task.id, task.name);
+        li.appendChild(editButton);
+        li.appendChild(deleteButton);
         taskList.appendChild(li);
     });
 }
@@ -22,6 +29,26 @@ async function createTask() {
         body: JSON.stringify(task)
     });
     fetchTasks();
+}
+
+async function deleteTask(id) {
+    await fetch(`${apiUrl}?id=${id}`, {
+        method: 'DELETE'
+    });
+    fetchTasks();
+}
+
+async function editTask(id, currentName) {
+    const newName = prompt('Edit task name:', currentName);
+    if (newName) {
+        const task = { id: id, name: newName };
+        await fetch(apiUrl, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(task)
+        });
+        fetchTasks();
+    }
 }
 
 document.addEventListener('DOMContentLoaded', fetchTasks);
